@@ -1,0 +1,50 @@
+<div class="w-75 mx-auto">
+  <h2>Register</h2>
+  <form action="/register" method="post">
+    <div class="d-flex gap-3">
+      <div class="form-floating mb-3 w-50">
+        <input
+          name="firstname"
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          placeholder="firstname"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating mb-3 w-50">
+        <input
+          name="lastname"
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          placeholder="lastname"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        name="email"
+        type="email"
+        class="form-control"
+        id="floatingInput"
+        placeholder="name@example.com"
+      />
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <input
+        name="password"
+        type="password"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="Password"
+      />
+      <label for="floatingPassword">Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Login</button>
+  </form>
+</div>
