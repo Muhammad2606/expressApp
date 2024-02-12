@@ -20,19 +20,27 @@ app.use(express.json())
 app.use(AuthRoutera)    
 app.use(PruductRouters)
 
-mongoose.set('strictQuery', false);
-
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true})
-  .then(() => {
-    console.log('MongoDBga muvaffaqiyatli ulanish');
-  })
-  .catch((err) => {
-    console.error('MongoDBga ulanishda xatolik:', err);
-  });
 
 
-
-const PORT = process.env.PORT || 4100
-app.listen(PORT, () => console.log(`servis is runing on ${PORT}`))
-
-
+const strartApp = () =>{
+    try {
+        mongoose.set('strictQuery', false);
+        
+        mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true})
+          .then(() => {
+            console.log('MongoDBga muvaffaqiyatli ulanish');
+          })
+          .catch((err) => {
+            console.error('MongoDBga ulanishda xatolik:', err);
+          });
+        
+        
+        
+        const PORT = process.env.PORT || 4100
+        app.listen(PORT, () => console.log(`servis is runing on ${PORT}`))
+        
+    } catch (error) {
+        console.log(error);
+    }
+}
+strartApp()
