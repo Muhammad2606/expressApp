@@ -42,15 +42,13 @@
           role="group"
           aria-label="Basic mixed styles example"
         >
-          <button type="button" class="btn btn-primary active">
-            <a class="text-light text-decoration-none" href="/Login">Login</a>
-          </button>
-          <button type="button" class="btn btn-success">
-            <a
-              class="text-light text-decoration-none"
-              href="/Register"
-            >Register</a>
-          </button>
+        {{#if token}}
+          <button type="button" class="btn btn-danger active"><a class="text-light text-decoration-none" href="/Logout">Logout</a></button>
+        {{else}}
+
+          <button type="button" class="btn btn-primary active"><a class="text-light text-decoration-none" href="/Login">Login</a></button>
+          <button type="button" class="btn btn-success"><a class="text-light text-decoration-none" href="/Register" >Register</a></button>
+        {{/if}}
         </div>
       </nav>
     </div>
