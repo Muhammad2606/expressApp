@@ -1,25 +1,20 @@
 import { Router } from "express";
-import User from "../models/user.js";
+import User from "../models/User.js";
 import bcrypt from "bcrypt"
-import { ganerateJWTToken } from "./services/token.js";
+import { ganerateJWTToken } from "../services/token.js";
+import registerMiddleware from "../middleware/register.js";
 const router = Router()
 
-router.get('/login',(req, res) =>{
-    if(req.cookies.token){
-        res.redirect('/')
-        return
-    }
+router.get('/login', registerMiddleware , (req, res) =>{
+   
     res.render('login',{
         title: "Login | Boomshop",
         loginError: req.flash('loginError')
     })
 })
 
-router.get('/register',(req, res) =>{
-    if(req.cookies.token){
-        res.redirect('/')
-        return
-    }
+router.get('/register', registerMiddleware, (req, res) =>{
+ 
     res.render('register',{
         title: "Register | Boomshop",
         registerError: req.flash('registerError')
