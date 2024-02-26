@@ -1,18 +1,23 @@
 import express, { urlencoded }  from "express";
 import {  create } from "express-handlebars";
-import AuthRoutera from "./routes/auth.js"
-import PruductRouters from "./routes/pruduct.js"
 import flash from 'connect-flash'
-import * as dotenv from 'dotenv'
 import mongoose from "mongoose";
 import session from "express-session";
-import varMiddleware from './middleware/var.js'
 import cookieParser from "cookie-parser";
+// routes 
+import AuthRoutera from "./routes/auth.js"
+import PruductRouters from "./routes/pruduct.js"
+// varMiddleware
+import varMiddleware from './middleware/var.js'
+import userMiddleware from "./middleware/user.js";
+import hbhelpers from './utils/index.js'
+
+import * as dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
 
-const hbs = create({defaultLayout: 'main', extname: 'hbs'})
+const hbs = create({defaultLayout: 'main', extname: 'hbs', helpers:hbhelpers })
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
@@ -25,8 +30,10 @@ app.use(cookieParser())
 // app.use(Session({secret: 'muhammad', resave: false, saveUninitialzed:false}))
 app.use(session({secret: 'Muhammad', resave: false, saveUninitialized: false}))
 app.use(flash())
+// middleware
 app.use(varMiddleware)
-
+app.use(userMiddleware)
+// auth 
 app.use(AuthRoutera)    
 app.use(PruductRouters)
 
