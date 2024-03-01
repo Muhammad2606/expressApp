@@ -10,7 +10,8 @@ router.get('/', async (req, res) =>{
     res.render('index',{
         title: "Home | Boomshop",
         products: products.reverse(),
-        userId: req.userId ? req.userId.toString() : null
+        userId: req.userId ? req.userId.toString() : null,
+        
     })
 })
 
@@ -28,7 +29,7 @@ router.get('/add', authMiddleware, (req, res) =>{
 router.get('/pruduct', async(req, res) =>{
     const user = req.userId ? req.userId.toString() : null
     const myProduct = await Product.find({user}).populate('user').lean()
-    console.log(myProduct);
+
     res.render('pruduct',{
         title: "Product | Boomshop",
         isProducts: true,

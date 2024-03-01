@@ -1,4 +1,4 @@
-import express, { urlencoded }  from "express";
+import express  from "express";
 import {  create } from "express-handlebars";
 import flash from 'connect-flash'
 import mongoose from "mongoose";
@@ -27,7 +27,8 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser())
-// app.use(Session({secret: 'muhammad', resave: false, saveUninitialzed:false}))
+
+
 app.use(session({secret: 'Muhammad', resave: false, saveUninitialized: false}))
 app.use(flash())
 // middleware
