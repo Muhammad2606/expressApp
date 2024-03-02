@@ -47,6 +47,8 @@ router.post('/login', async (req, res) =>{
         return
     }
     const token = ganerateJWTToken(existUser._id)
+   
+  
     res.cookie('token', token, { secure: true})
     res.redirect('/')
 })
@@ -81,7 +83,7 @@ router.post('/register', async (req, res) =>{
     const user = await User.create(userData)
     const token = ganerateJWTToken(user._id)
     res.cookie('token', token, { secure: true})
-    console.log(token);
+   
 
     res.redirect('/')
 })

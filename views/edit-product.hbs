@@ -1,0 +1,66 @@
+<div class="mx-auto w-75">
+  <p>Edit-product </p>
+
+  {{#if errorEditProduct}}
+
+  <div class="alert alert-danger alert-dismissible  fade show" role="alert">
+   
+   <p> <span class="text-danger fw-bold">!Error</span> {{errorEditProduct}}</p>
+  <button type="button" class="btn-close " data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+  {{/if}}
+
+  <form action="/edit-product/{{product._id}}" method="post">
+    <div class="form-floating mb-3">
+      <input
+        name="title"
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="title"
+        value="{{product.title}}"
+      />
+      <label for="floatingInput">title</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        name="description"
+        type="text"
+        class="form-control"
+        id="floatingPassword"
+        placeholder="description"
+        value="{{product.description}}"
+      />
+      <label for="floatingPassword">description</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        name="image"
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="image"
+        value="{{product.image}}"
+    
+      />
+      <label for="floatingInput">image</label>
+    </div>
+
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="addon-wrapping">$</span>
+      <input
+        type="text"
+        class="form-control"
+        name="price"
+        placeholder="price"
+        aria-label="Username"
+        aria-describedby="addon-wrapping"
+        value="{{product.price}}"
+
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Edit product</button>
+  </form>
+</div>

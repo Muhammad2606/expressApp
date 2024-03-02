@@ -40,25 +40,22 @@ app.use(PruductRouters)
 
 
 
-const strartApp = () =>{
-    try {
-        mongoose.set('strictQuery', false);
-        
-        mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true})
-          .then(() => {
-            console.log('MongoDBga muvaffaqiyatli ulanish');
-          })
-          .catch((err) => {
-            console.error('MongoDBga ulanishda xatolik:', err);
-          });
-        
-        
-        
-        const PORT = process.env.PORT || 4100
-        app.listen(PORT, () => console.log(`servis is runing on ${PORT}`))
-        
-    } catch (error) {
-        console.log(error);
-    }
-}
-strartApp()
+
+
+const startApp = async () => {
+  try {
+
+      // MongoDB serveriga ulanish
+      await mongoose.connect(process.env.MONGO_URL);
+      console.log('MongoDBga muvaffaqiyatli ulanish');
+
+      // Express serverini boshlash
+      const PORT = process.env.PORT || 4100;
+      app.listen(PORT, () => console.log(`Servis ${PORT} portida ishga tushirildi`));
+      
+  } catch (error) {
+      console.error('Xatolik yuz berdi:', error);
+  }
+};
+
+startApp();
